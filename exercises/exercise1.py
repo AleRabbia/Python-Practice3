@@ -4,6 +4,15 @@ from math import pi
 
 
 class Circle:
+
+    def __init__(self, radio: float):
+        self.radio = radio
+
+    def area(self) -> float:
+        return round(pi * self.radio**2, 2)
+
+    def perimetro(self) -> float:
+        return round(2 * pi * self.radio, 2)
     """Todo cículo tiene un radio y se desea conocer tanto el área como el
     perímetro (longitud de circunferencia).
 

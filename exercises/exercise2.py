@@ -2,6 +2,23 @@
 
 
 class Article:
+
+    __iva= 0.21#variable de clase
+
+    def __init__(self, nombre: str, costo: float, descuento: float = 0.0) -> None:  #contructor
+        self.nombre = nombre
+        self.costo = costo
+        self.descuento = descuento
+
+    def calcular_precio(self) -> float: #metodo de instancia
+        precio = (self.costo -(self.costo * self.descuento)) * ( 1+ self.__iva) 
+        return round(precio, 2)
+
+    @classmethod
+    def actualizar_iva(cls, nuevo_iva: float) -> None: #metodo de clase
+        cls.__iva = nuevo_iva
+
+
     """Todos los artículos tienen un nombre y un costo, opcionalmente algunos
     tienen un porcentaje de descuento.
 
@@ -45,10 +62,13 @@ except TypeError:
 # Test básico
 article = Article("Auto", 1)
 assert article.nombre == "Auto"
+print(article.calcular_precio())
 assert article.calcular_precio() == 1.21
 
 article = Article("Auto", 1, 0.21)
 assert article.nombre == "Auto"
+
+print(article.calcular_precio())
 assert article.calcular_precio() == 0.96
 
 
